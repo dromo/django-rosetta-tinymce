@@ -242,6 +242,15 @@ def home(request):
             storage.delete('rosetta_last_save_error')
             rosetta_last_save_error = True
 
+        try:
+            ROSETTA_TINYMCE_ENABLED = settings.ROSETTA_TINYMCE_ENABLED
+            ROSETTA_TINYMCE_JS_URL = settings.ROSETTA_TINYMCE_JS_URL
+            ROSETTA_TINYMCE_CONFIG_URL = settings.ROSETTA_TINYMCE_CONFIG_URL
+        except AttributeError:
+            ROSETTA_TINYMCE_ENABLED = False
+            ROSETTA_TINYMCE_JS_URL = '/static/js/tiny_mce/tinymce.js'
+            ROSETTA_TINYMCE_CONFIG_URL = '/static/js/rosetta_tinymce_config.js'
+
         return render_to_response('rosetta/pofile.html', locals(), context_instance=RequestContext(request))
     else:
         return list_languages(request, do_session_warn=True)

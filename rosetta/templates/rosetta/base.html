@@ -16,8 +16,12 @@
         google.load("jquery", "1.3");
         {% if ENABLE_TRANSLATION_SUGGESTIONS %}google.load("language", "1");{% endif %}
         {% include 'rosetta/js/rosetta.js' %}
-    //-->
+        //-->
     </script>
+    {% if ROSETTA_TINYMCE_ENABLED %}
+        <script type="text/javascript" src="{{ ROSETTA_TINYMCE_JS_URL }}"></script>    
+        <script type="text/javascript" src="{{ ROSETTA_TINYMCE_CONFIG_URL }}"></script> 
+    {% endif %}
 </head>
 <body>
     <div id="container">
